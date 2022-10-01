@@ -1,9 +1,11 @@
-FROM ubuntu
-RUN apt-get install -y apache2 \
+FROM centos:latest
+RUN yum install -y httpd \
 zip\
 unzip
-ADD https://miro.medium.com/max/775/0*rZecOAy_WVr16810 /var/www/html/
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page254/photogenic.zip /var/www/html/
 WORKDIR /var/www/html/
-RUN cp . .
+RUN unzip photogenic.zip
+RUN cp -rvf photogenic/* .
+RUN rm -rf photogenic photogenic.zip
 CMD ["/usr/sbin/apache2","-D","FOREGROUND"]
-EXPOSE 80 22
+EXPOSE 80
