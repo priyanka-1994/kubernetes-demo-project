@@ -1,0 +1,21 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: devops
+spec:
+   replicas: 2
+   selector:
+      matchLables: 
+        app: devops
+      template:
+        metadata: 
+          lables:
+            app: devops
+        spec: 
+          containers:
+            - name: devops
+              image: prikale/docker-jenkins-ansible-demo
+              imagePullPolicy: Always
+              ports:
+               - containerPort: 80
+
